@@ -6,6 +6,7 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,7 +14,8 @@ const App = () => {
     const data = {
       username: username,
       email: email,
-      password: password
+      password: password,
+      role: [role]
     };
 
     try {
@@ -46,8 +48,14 @@ const App = () => {
         <input
           type="email"
           placeholder="Email"
-          value={password}
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="role"
+          placeholder="Role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
         />
         <button type="submit">Enviar</button>
       </form>
