@@ -9,6 +9,7 @@ const App = () => {
   const [role, setRole] = useState('');
 
   const handleSubmit = async (e) => {
+    console.log('Dados enviados: ', username, password, email, role);
     e.preventDefault();
 
     const data = {
@@ -19,7 +20,7 @@ const App = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/signup-signup', data, {
+      const response = await axios.post('http://localhost:8080/api/auth/signup', data, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -32,32 +33,39 @@ const App = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
+      <form className='formSignup' onSubmit={handleSubmit}>
+        <h1 className='h1Signup'>Cadastro</h1>
+        <input className='inputSignup'
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <input
+        <input className='inputSignup'
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input
+        <input className='inputSignup'
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="role"
-          placeholder="Role"
+        <select
+          className='dropSignup'
           value={role}
           onChange={(e) => setRole(e.target.value)}
-        />
-        <button type="submit">Enviar</button>
+        >
+          <option value="">Selecione uma opção</option>
+          <option value="admin">Admin</option>
+          <option value="comprador">Comprador</option>
+          <option value="vendedor">Vendedor</option>
+          {/* Adicione mais opções conforme necessário */}
+        </select>
+
+        <button className='buttonSignup' type="submit">Enviar</button>
       </form>
     </div>
   );
